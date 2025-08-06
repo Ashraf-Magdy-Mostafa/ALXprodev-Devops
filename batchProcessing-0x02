@@ -4,7 +4,7 @@
 POKEMON_LIST=("bulbasaur" "ivysaur" "venusaur" "charmander" "charmeleon")
 DATA_DIR="pokemon_data"
 ERROR_LOG="errors.txt"
-MAX_RETRIES=3
+MAX_RETRIES="3"
 SLEEP_TIME=1   # Delay between retries and requests (seconds)
 
 # Create the data directory if it doesn't exist
