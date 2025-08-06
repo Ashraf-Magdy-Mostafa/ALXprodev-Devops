@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Directory to store Pokémon JSON files
+DATA_DIR="pokemon_data"
+POKEMON_LIST=("bulbasaur" "ivysaur" "venusaur" "charmander" "charmeleon")
+
+mkdir -p "$DATA_DIR"
+
+for pokemon in "${POKEMON_LIST[@]}"; do
+    echo "Fetching data for $pokemon..."
+    # Start the download in the background and save to each file.
+    curl -sSf "https://pokeapi.co/api/v2/pokemon/$pokemon" -o "$DATA_DIR/$pokemon.json" \
+        && echo "Saved data to $DATA_DIR/$pokemon.json ✅" \
+        || echo "Error: Failed to fetch $pokemon" >&2 &
+done
+
+# Wait for all background jobs to finish before proceeding
+wait
+
+echo "All Pokémon have been fetched."
